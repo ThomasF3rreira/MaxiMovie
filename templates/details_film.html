@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Détails du film</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .film-details {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .film-details img {
+            display: block;
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .film-details h2 {
+            margin-top: 0;
+        }
+
+        .film-details p {
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .button-container .delete {
+            background-color: #FF0000;
+        }
+
+        .button-container button:last-child {
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <h1>{{ film.titre }}</h1>
+    <div class="film-details">
+        <img src="{{ url_for('get_file', filename = film.image) }}" alt="Affiche du film">
+        <p><strong>Année :</strong> {{ film.annee }}</p>
+        <p><strong>Description :</strong> {{ film.description }}</p>
+        <p><strong>Acteurs :</strong> {{ film.acteurs }}</p>
+        <p><strong>Réalisation :</strong> {{ film.realisation }}</p>
+        <p><strong>Production :</strong> {{ film.producteur }}</p>
+    </div>
+
+    <div class="button-container">
+        <button onclick="window.location.href='/edit_film/{{ film.id }}'">Modifier</button>
+        <form action="/delete_film/{{ film.id }}" method="POST" style="display: inline-block;">
+            <button class="delete" type="submit">Supprimer</button>
+        </form>
+
+    </div>
+</body>
+</html>

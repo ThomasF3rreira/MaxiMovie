@@ -1,0 +1,43 @@
+<style>
+    nav {
+        background-color: #f9f9f9;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    nav li {
+        margin: 0 10px;
+    }
+
+    nav li a {
+        text-decoration: none;
+        color: #333;
+        padding: 5px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    nav li a:hover {
+        background-color: #ddd;
+    }
+
+    nav li.active a {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+{% include 'title.html' %}
+<nav>
+    <ul>
+        <li {% if request.path == url_for('index') %}class="active"{% endif %}><a href="{{ url_for('index') }}">Accueil</a></li>
+        <li {% if request.path == url_for('add_film') %}class="active"{% endif %}><a href="{{ url_for('add_film') }}">Ajouter un film</a></li>
+    </ul>
+</nav>
